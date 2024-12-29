@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgb(199, 200, 202);
+            padding: 10px;
+            border-radius: 5px;
+            padding-left: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .row, .row_bottom {
+            padding: 2px;
+            margin: 2px;
+            justify-content: left;
+        }
+
+        button {
+            padding: 8px;
+            background-color: rgb(183, 218, 249);
+            border: 1px solid rgb(156, 154, 154);
+            border-radius: 5px;
+            width: 20%;
+            height: 20%;
+            font-size: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: rgb(106, 208, 252);
+        }
+
+        #display {
+            align-items: center;
+            margin-left: 4px;
+            margin-right: 32px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input id="display" type="text" placeholder="0" disabled>
+        <div class="row">
+            <button onclick="clearD()">C</button>
+            <button onclick="deleted()">D</button>
+            <button onclick="square()">X^2</button>
+            <button onclick="appendOPP('**')">X^Y</button>
+        </div>
+        <div class="row">
+            <button onclick="appendOPP('/')">/</button>
+            <button onclick="appendOPP('*')">*</button>
+            <button onclick="appendOPP('-')">-</button>
+            <button onclick="appendOPP('+')">+</button>
+        </div>
+        <div class="row">
+            <button onclick="appendNUM('1')">1</button>
+            <button onclick="appendNUM('2')">2</button>
+            <button onclick="appendNUM('3')">3</button>
+            <button onclick="appendOPP('%')">%</button>
+        </div>
+        <div class="row">
+            <button onclick="appendNUM('4')">4</button>
+            <button onclick="appendNUM('5')">5</button>
+            <button onclick="appendNUM('6')">6</button>
+            <button onclick="appendNUM('0')">0</button>
+        </div>
+        <div class="row">
+            <button onclick="appendNUM('7')">7</button>
+            <button onclick="appendNUM('8')">8</button>
+            <button onclick="appendNUM('9')">9</button>
+            <button onclick="appendNUM('.')">.</button>
+        </div>
+        <div class="row_bottom">
+            <button onclick="squareROOT()">Sq</button>
+            <button onclick="calculate()">=</button>
+        </div>
+    </div>
+</body>
+<script>
+    function clearD() {
+        const display = document.getElementById('display');
+        display.value = '';
+    }
+
+    function deleted() {
+        const display = document.getElementById('display');
+        display.value = display.value.slice(0, -1);
+    }
+
+    function square() {
+        const display = document.getElementById('display');
+        display.value = Math.pow(parseFloat(display.value), 2);
+    }
+
+    function squareROOT() {
+        const display = document.getElementById('display');
+        display.value = Math.sqrt(parseFloat(display.value));
+    }
+
+    function appendOPP(operator) {
+        const display = document.getElementById('display');
+        display.value += operator;
+    }
+
+    function appendNUM(number) {
+        const display = document.getElementById('display');
+        display.value += number;
+    }
+
+    function calculate() {
+        const display = document.getElementById('display');
+        try {
+            display.value = eval(display.value);
+        } catch {
+            display.value = 'error';
+        }
+    }
+</script>
+</html>
